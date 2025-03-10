@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olek Wiśniewski - Kandydat na Przewodniczącego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #1a76d2;
+            --red: #e63946;
+            --white: #f1faee;
+            --dark-blue: #0d3b66;
+            --light-blue: #a8dadc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        nav {
+            background-color: var(--blue);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+        
+        .nav-links li {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-links li::before {
+            content: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            display: block;
+            border-radius: 5px;
+            font-weight: 600;
+            font-family: 'Raleway', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--red);
+            transform: translateY(-3px);
+        }
+        
+        header {
+            background-color: var(--blue);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .slogan {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+            letter-spacing: 1px;
+        }
+        
+        .photo-container {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: var(--white);
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .page-section {
+            display: none;
+            min-height: 60vh;
+        }
+        
+        .active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .home-content {
+            display: block;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--red);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-left: 1rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        .qr-section {
+            text-align: center;
+        }
+        
+        .qr-container {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .qr-container img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .cta {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .vote-button, .back-button {
+            display: inline-block;
+            background-color: var(--red);
+            color: white;
+            padding: 1rem 2rem;
+            margin-top: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-button {
+            background-color: var(--dark-blue);
+            margin-right: 1rem;
+        }
+        
+        .vote-button:hover, .back-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            background-color: var(--red);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        .button-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slogan {
+                font-size: 1.8rem;
+            }
+            
+            .photo-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .vote-button, .back-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Strona główna</a></li>
+                <li><a onclick="showPage('about')">O mnie</a></li>
+                <li><a onclick="showPage('program')">Mój program wyborczy</a></li>
+                <li><a onclick="showPage('video')">Mój film wyborczy</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div class="hero">
+            <h1 class="slogan">Twój głos = Twoja przyszłość!</h1>
+            <div class="photo-container">
+                <img src="sigma.jpg" alt="Olek Wiśniewski">
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Strona główna -->
+        <div id="home" class="page-section active">
+            <div class="home-content">
+                <h2>Olek Wiśniewski</h2>
+                <p>Kandydat na przewodniczącego samorządu szkolnego</p>
+                <p>Nazywam się Olek Wiśniewski, jestem uczniem klasy 8D i kandyduję na przewodniczącego samorządu szkolnego.</p>
+                <p>Wybierz zakładkę powyżej, aby dowiedzieć się więcej o mojej kandydaturze!</p>
+                
+                <button class="vote-button" onclick="showPage('program')">Zobacz mój program</button>
+            </div>
+        </div>
+        
+        <!-- O mnie -->
+        <div id="about" class="page-section">
+            <section>
+                <h2>O mnie</h2>
+                <p><strong>Nazywam się Olek Wiśniewski, jestem uczniem klasy 8D i kandyduję na przewodniczącego samorządu szkolnego.</strong></p>
+                <p>Od zawsze zależało mi na tym, aby nasza szkoła była miejscem, gdzie każdy uczeń czuje się wysłuchany i doceniony. Wierzę, że wspólnymi siłami możemy stworzyć szkolną społeczność, która będzie wspierać się nawzajem i rozwijać swoje pasje.</p>
+                <p>Jako przewodniczący samorządu, moim głównym celem będzie zapewnienie, że głos każdego ucznia zostanie usłyszany. Chcę, aby nasza szkoła była miejscem, gdzie nie tylko się uczymy, ale również dobrze się bawimy i nawiązujemy przyjaźnie na całe życie.</p>
+                
+                <div class="button-container">
+                    <button class="back-button" onclick="showPage('home')">Powrót do strony głównej</button>
+                    <button class="vote-button" onclick="showPage('program')">Zobacz mój program</button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Program wyborczy -->
+        <div id="program" class="page-section">
+            <section>
+                <h2>Mój program wyborczy</h2>
+                <ul>
+                    <li><strong>Częstsze dyskoteki i wydarzenia szkolne</strong> - Zorganizuję więcej imprez tematycznych i wydarzeń integrujących społeczność uczniowską.</li>
+                    <li><strong>Organizacja turniejów</strong> - Będę inicjować różnorodne konkursy i turnieje: sportowe, naukowe i artystyczne, aby każdy mógł pokazać swoje talenty.</li>
+                    <li><strong>Lepsza komunikacja między samorządem a uczniami</strong> - Wprowadzę regularne konsultacje, ankiety i spotkania, żeby na bieżąco poznawać Wasze potrzeby i oczekiwania.</li>
+                    <li><strong>Większa rola uczniów w podejmowaniu decyzji</strong> - Zadbam o to, by uczniowie mieli realny wpływ na życie szkoły i decyzje, które ich dotyczą.</li>
+                </ul>
+                
+                <div class="button-container">
+                    <button class="back-button" onclick="showPage('home')">Powrót do strony głównej</button>
+                    <button class="vote-button" onclick="showPage('video')">Zobacz mój film</button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Film wyborczy -->
+        <div id="video" class="page-section">
+            <section class="qr-section">
+                <h2>Mój film wyborczy</h2>
+                <p>Zeskanuj poniższy kod QR, aby obejrzeć mój film wyborczy!</p>
+                <div class="qr-container">
+                    <img src="qr.jpg" alt="Kod QR do filmu wyborczego">
+                </div>
+                
+                <div class="button-container">
+                    <button class="back-button" onclick="showPage('home')">Powrót do strony głównej</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <section class="cta">
+        <h2 style="color: white;">Głosuj na mnie!</h2>
+        <p>Razem możemy sprawić, że nasza szkoła będzie lepszym miejscem dla wszystkich. Liczę na Twój głos w nadchodzących wyborach!</p>
+        <button class="vote-button">Zagłosuj na Olka!</button>
+    </section>
+    
+    <footer>
+        <p>© 2025 Kampania wyborcza Olka Wiśniewskiego | Samorząd Szkolny</p>
+    </footer>
+    
+    <script>
+        function showPage(pageId) {
+            // Ukryj wszystkie sekcje
+            const allSections = document.querySelectorAll('.page-section');
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Pokaż wybraną sekcję
+            const selectedSection = document.getElementById(pageId);
+            selectedSection.classList.add('active');
+            
+            // Przewiń na górę strony
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
